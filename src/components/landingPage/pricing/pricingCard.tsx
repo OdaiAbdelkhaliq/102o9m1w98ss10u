@@ -26,7 +26,7 @@ export default function PricingCard ({name, desc, price, features, color, curren
       <p className="mb-5 text-white">{desc}</p>
       <ul key="" className="mb-10 flex flex-col gap-y-2 text-white">
           {features.map((feature) => (
-              <li className="flex items-center gap-2">
+              <li key="" className="flex items-center gap-2">
                   <CheckCircle2/>
                   {feature}</li>
           ))}

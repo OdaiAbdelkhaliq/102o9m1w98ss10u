@@ -103,7 +103,7 @@ const CollaboratorSearch: React.FC<CollaboratorSearchProps> = ({
                 <div className="flex gap-4 items-center">
                   <Avatar className="w-8 h-8 ">
                     {/* <AvatarImage src="/avatars/" /> */}
-                    <AvatarFallback className="bg-pink-400 text-white">{user.email.substring(0, 2).toUpperCase()}</AvatarFallback>
+                    <AvatarFallback className="bg-pink-400 text-white">{user?.email?.substring(0, 2).toUpperCase() || ''}</AvatarFallback>
                   </Avatar>
                   <div
                     className="text-sm 

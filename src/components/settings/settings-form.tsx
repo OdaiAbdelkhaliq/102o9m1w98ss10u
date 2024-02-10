@@ -371,7 +371,7 @@ const SettingsForm = () => {
                         <Avatar>
                           <AvatarImage src={user.avatarUrl} />
                           <AvatarFallback className="bg-pink-400 text-white">
-                          {user.email.substring(0, 2).toUpperCase()}
+                          {user?.email?.substring(0, 2).toUpperCase() || ''}
                           </AvatarFallback>
                         </Avatar>
                         <div
