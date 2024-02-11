@@ -10,7 +10,7 @@ export default function Pricing () {
     </div>
     </div>
 
-    <div className="flex flex-col lg:flex-row gap-8 items-center justify-center p-4">
+    <div className="flex flex-col lg:flex-row gap-8 items-center justify-center p-4 ">
 
     <div className="flex flex-col gap-8 p-10 md:flex-row ">
       <PricingCard color="#f06292" period="" name="Basic" desc="Suitable for personal use or to try takhteet" features={[

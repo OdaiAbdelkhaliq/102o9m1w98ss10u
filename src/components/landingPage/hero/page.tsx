@@ -36,7 +36,7 @@ const HeroContent = {
 
       {/*Right*/}
       <div className=" relative mt-10  ">
-        <Image className="h-full w-full bg-secondary p-1 rounded-xl" src={HeroContent.heroImage.path} alt=""  quality={100}   />
+        <Image className="h-full w-full bg-none p-1 rounded-xl" src={HeroContent.heroImage.path} alt=""  quality={100}   />
       </div>
       
 

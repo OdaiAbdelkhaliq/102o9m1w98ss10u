@@ -31,11 +31,11 @@ const SignUpFormSchema = z
     password: z
       .string()
       .describe('Password')
-      .min(6, 'Password must be minimum 6 characters'),
+      .min(6, 'Password must be minimum 8 characters'),
     confirmPassword: z
       .string()
       .describe('Confirm Password')
-      .min(6, 'Password must be minimum 6 characters'),
+      .min(6, 'Password must be minimum 8 characters'),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match.",
@@ -55,10 +55,10 @@ const Signup = () => {
 
   const confirmationAndErrorStyles = useMemo(
     () =>
-      clsx('bg-primary', {
+      clsx('bg-white', {
         'bg-red-500/10': codeExchangeError,
         'border-red-500/50': codeExchangeError,
-        'text-red-700': codeExchangeError,
+        'text-white': codeExchangeError,
       }),
     [codeExchangeError]
   );
@@ -102,7 +102,7 @@ const Signup = () => {
         >
           <Image
             src={Logo}
-            alt="Takhteet - The Most Improve Project Management Platform"
+            alt="Takhteet - Plans, tasks, collaboration in one place"
             width={50}
             height={50}
           />
@@ -117,7 +117,7 @@ const Signup = () => {
           className="
         text-foreground/60"
         >
-          The Most Improve Project Management Platform
+          Plans, tasks, collaboration in one place
         </FormDescription>
         {!confirmation && !codeExchangeError && (
           <>
@@ -184,7 +184,7 @@ const Signup = () => {
 
         {submitError && <FormMessage>{submitError}</FormMessage>}
         <span className="self-container">
-          Already have an account?{' '}
+        You already have an account?{' '}
           <Link
             href="/login"
             className="text-pink-400"
@@ -200,7 +200,7 @@ const Signup = () => {
                 {codeExchangeError ? 'Invalid Link' : 'Check your email.'}
               </AlertTitle>
               <AlertDescription>
-                {codeExchangeError || 'An email confirmation has been sent.'}
+                {codeExchangeError || 'A confirmation email has been sent.'}
               </AlertDescription>
             </Alert>
           </>

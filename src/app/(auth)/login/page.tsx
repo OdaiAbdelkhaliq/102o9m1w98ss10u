@@ -64,7 +64,7 @@ const LoginPage = () => {
         >
           <Image
             src={Logo}
-            alt="Takhteet - The Most Improve Project Management Platform"
+            alt="Takhteet - Plans, tasks, collaboration in one place"
             width={50}
             height={50}
           />
@@ -79,7 +79,7 @@ const LoginPage = () => {
           className="
         text-foreground/60"
         >
-          The most improving project Management platform
+          Plans, tasks, collaboration in one place
         </FormDescription>
         <FormField
           disabled={isLoading}
@@ -125,7 +125,7 @@ const LoginPage = () => {
           {!isLoading ? 'Login' : <Loader />}
         </Button>
         <span className="self-container">
-          Dont have an account?{' '}
+        You don't have an account yet?{' '}
           <Link
             href="/signup"
             className="text-pink-400"
