@@ -14,7 +14,7 @@
     "check": "drizzle-kit check:pg",
     "up": "drizzle-kit up:pg",
     "migrate": "bun run src/lib/supabase/migration.ts",
-    "heroku-prebuild": "npm install --production=false"
+    "heroku-prebuild": "npm ci --production=false"
   },
   "dependencies": {
     "@blocknote/core": "^0.11.1",
