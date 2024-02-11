@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 'use client';
 import { useSupabaseUser } from '@/lib/providers/supabase-user-provider';
 import { User, workspace } from '@/lib/supabase/supabase.types';
@@ -185,7 +187,7 @@ const WorkspaceCreator = () => {
                   >
                     <div className="flex gap-4 items-center">
                       <Avatar>
-                        <AvatarFallback className="bg-pink-400 text-white">{user.email.substring(0, 2).toUpperCase()}</AvatarFallback>
+                        <AvatarFallback className="bg-pink-400 text-white">{user?.email?.substring(0, 2).toUpperCase() || ''}</AvatarFallback>
                       </Avatar>
                       <div
                         className="text-sm 

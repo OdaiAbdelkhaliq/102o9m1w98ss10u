@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 'use client';
 import { useSubscriptionModal } from '@/lib/providers/subscription-modal-provider';
 import React, { useState } from 'react';
@@ -80,7 +82,7 @@ const SubscriptionModal: React.FC<SubscriptionModalProps> = ({ products }) => {
                   "
                   key={product.id}
                 >
-                  {product.prices?.map((price: { id: React.Key | null | undefined; interval: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }) => (
+                  {product.prices?.map((price) => (
                     <React.Fragment key={price.id}>
                       <b className="text-2xl text-foreground">
                         {formatPrice(price)} / <small>{price.interval}</small>

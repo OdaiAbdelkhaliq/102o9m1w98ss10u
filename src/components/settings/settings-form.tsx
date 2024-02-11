@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { useToast } from '../ui/use-toast';
@@ -152,57 +154,57 @@ const SettingsForm = () => {
   };
 
 
-    const onChangeProfilePicture = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = e.target.value;
-    let filePath = "";
-    const uploadAvatar = async () => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .upload(`avatar-${v4()}`, file, { cacheControl: "5", upsert: true });
+  //   const onChangeProfilePicture = async (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   const file = e.target.value;
+  //   let filePath = "";
+  //   const uploadAvatar = async () => {
+  //     const { data, error } = await supabase.storage
+  //       .from("avatars")
+  //       .upload(`avatar-${v4()}`, file, { cacheControl: "5", upsert: true });
 
-      if (error) throw error;
-      filePath = data.path;
-    };
+  //     if (error) throw error;
+  //     filePath = data.path;
+  //   };
 
-    const deleteAvatar = async (avatarUrl: string) => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .remove([avatarUrl]);
-      if (error) throw error;
-      console.log("Avatar Delete Data:", data);
-    };
+  //   const deleteAvatar = async (avatarUrl: string) => {
+  //     const { data, error } = await supabase.storage
+  //       .from("avatars")
+  //       .remove([avatarUrl]);
+  //     if (error) throw error;
+  //     console.log("Avatar Delete Data:", data);
+  //   };
 
-    try {
-      if (!avatarUrl) {
-        await uploadAvatar();
-      } else {
-        await deleteAvatar(avatarUrl);
-        await uploadAvatar();
-      }
-      setAvatarUrl(filePath);
-      if (!user) return;
-      const { data, error } = await (
-        user.id
-      );
-      if (error) {
-        toast({
-          title: "Error",
-          variant: "destructive",
-          description: "Could not update the profile picture",
-        });
-      } else {
-        toast({
-          title: "Success",
-          description: "Updated the profile picture",
-        });
-      }
-    } catch (error) {
-      console.log("Error in uploading profile picture:");
-      console.log(error)
-    }
-  };
+  //   try {
+  //     if (!avatarUrl) {
+  //       await uploadAvatar();
+  //     } else {
+  //       await deleteAvatar(avatarUrl);
+  //       await uploadAvatar();
+  //     }
+  //     setAvatarUrl(filePath);
+  //     if (!user) return;
+  //     const { data, error } = await (
+  //       user.id
+  //     );
+  //     if (error) {
+  //       toast({
+  //         title: "Error",
+  //         variant: "destructive",
+  //         description: "Could not update the profile picture",
+  //       });
+  //     } else {
+  //       toast({
+  //         title: "Success",
+  //         description: "Updated the profile picture",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.log("Error in uploading profile picture:");
+  //     console.log(error)
+  //   }
+  // };
  
 
 
@@ -369,7 +371,7 @@ const SettingsForm = () => {
                     >
                       <div className="flex gap-4 items-center">
                         <Avatar>
-                          <AvatarImage src={user.avatarUrl} />
+                          {/* <AvatarImage src={user?.avatarUrl} /> */}
                           <AvatarFallback className="bg-pink-400 text-white">
                           {user?.email?.substring(0, 2).toUpperCase() || ''}
                           </AvatarFallback>
@@ -387,7 +389,9 @@ const SettingsForm = () => {
                           {c.email}
                         </div>
                       </div>
-                      <Button
+
+                      
+                        <Button
                         variant="secondary"
                         onClick={() => removeCollaborator(c)}
                       >

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 'use client';
 import { useAppState } from '@/lib/providers/state-provider';
 import { File, Folder, workspace } from '@/lib/supabase/supabase.types';
@@ -93,13 +91,13 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
     if (dirType === 'file') {
       selectedDir = state.workspaces
         .find((workspace) => workspace.id === workspaceId)
-        ?.folders.find((folder) => folder.id === folderId)
-        ?.files.find((file) => file.id === fileId);
+        ?.folders.find((folder: { id: string | undefined; }) => folder.id === folderId)
+        ?.files.find((file: { id: string; }) => file.id === fileId);
     }
     if (dirType === 'folder') {
       selectedDir = state.workspaces
         .find((workspace) => workspace.id === workspaceId)
-        ?.folders.find((folder) => folder.id === fileId);
+        ?.folders.find((folder: { id: string; }) => folder.id === fileId);
     }
     if (dirType === 'workspace') {
       selectedDir = state.workspaces.find(
@@ -125,7 +123,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
     if (!pathname || !state.workspaces || !workspaceId) return;
     const segments = pathname
       .split('/')
-      .filter((val) => val !== 'dashboard' && val);
+      .filter((val: string) => val !== 'dashboard' && val);
     const workspaceDetails = state.workspaces.find(
       (workspace) => workspace.id === workspaceId
     );
@@ -138,7 +136,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
 
     const folderSegment = segments[1];
     const folderDetails = workspaceDetails?.folders.find(
-      (folder) => folder.id === folderSegment
+      (folder: { id: any; }) => folder.id === folderSegment
     );
     const folderBreadCrumb = folderDetails
       ? `/ ${folderDetails.iconId} ${folderDetails.title}`
@@ -150,7 +148,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
 
     const fileSegment = segments[2];
     const fileDetails = folderDetails?.files.find(
-      (file) => file.id === fileSegment
+      (file: { id: any; }) => file.id === fileSegment
     );
     const fileBreadCrumb = fileDetails
       ? `/ ${fileDetails.iconId} ${fileDetails.title}`
@@ -173,6 +171,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         theme: 'snow',
         modules: {
           toolbar: TOOLBAR_OPTIONS,
+          
           cursors: {
             transformOnTextChange: true,
           },
@@ -327,13 +326,13 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
         }
         if (quill === null) return;
         if (!selectedDir[0].data) return;
-        quill.setContents(JSON.parse(selectedDir[0].data || '' ));
+        quill.setContents(JSON.parse(selectedDir[0].data || '{}'));
         dispatch({
           type: 'UPDATE_FOLDER',
           payload: {
             folderId: fileId,
             folder: { data: selectedDir[0].data },
-            workspaceId: selectedDir[0].workspaceId || '',
+            workspaceId: selectedDir[0].workspaceId 
           },
         });
       }
@@ -376,11 +375,13 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
     };
   }, [quill, socket, fileId, localCursors]);
 
+  //rooms
   useEffect(() => {
     if (socket === null || quill === null || !fileId) return;
     socket.emit('create-room', fileId);
   }, [socket, quill, fileId]);
 
+  //Send quill changes to all clients
   useEffect(() => {
     if (quill === null || socket === null || !fileId || !user) return;
 
@@ -488,7 +489,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
           setLocalCursors(allCursors);
         }
       })
-      .subscribe(async (status) => {
+      .subscribe(async (status: string) => {
         if (status !== 'SUBSCRIBED' || !user) return;
         const response = await findUser(user.id);
         if (!response) return;
