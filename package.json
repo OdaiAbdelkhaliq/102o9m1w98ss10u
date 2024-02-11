@@ -13,8 +13,7 @@
     "drop": "drizzle-kit drop",
     "check": "drizzle-kit check:pg",
     "up": "drizzle-kit up:pg",
-    "migrate": "bun run src/lib/supabase/migration.ts",
-    "NPM_CONFIG_PRODUCTION": false
+    "migrate": "bun run src/lib/supabase/migration.ts"
   },
   "dependencies": {
     "@blocknote/core": "^0.11.1",
