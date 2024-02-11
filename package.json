@@ -16,6 +16,7 @@
     "migrate": "bun run src/lib/supabase/migration.ts"
   },
   "dependencies": {
+    "packageManager": "pnpm@8.11.0",
     "@blocknote/core": "^0.11.1",
     "@blocknote/react": "^0.11.1",
     "@chakra-ui/react": "^2.8.2",
