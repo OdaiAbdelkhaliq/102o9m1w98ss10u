@@ -192,6 +192,8 @@ const Signup = () => {
             Login
           </Link>
         </span>
+        <p className="text-xs text-gray-400 ">* Realtime collaboration may not be compatible with versions below Windows 10 or MacOs 10 <br/>* Requires a fast connection to get better results</p>
+
         {(confirmation || codeExchangeError) && (
           <>
             <Alert className={confirmationAndErrorStyles}>
