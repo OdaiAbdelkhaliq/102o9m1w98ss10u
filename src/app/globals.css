@@ -131,3 +131,7 @@ ol,
 ul {
   @apply dark:text-white;
 }
+
+*::-webkit-scrollbar {
+  display: none !important;
+}
